@@ -87,7 +87,7 @@ class _HomestayListScreenState extends State<HomestayListScreen> {
     }
   }
 
-@override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[100],
@@ -229,5 +229,118 @@ class _HomestayListScreenState extends State<HomestayListScreen> {
     );
   }
 
-  Widget _buildStateMessage(IconData icon, String message) { return const SizedBox(); }
-  Widget _buildHomestayItemCard(BuildContext context, HomestayModel homestay) { return const SizedBox(); }
+  Widget _buildStateMessage(IconData icon, String message) {
+    return SingleChildScrollView(
+      physics: const AlwaysScrollableScrollPhysics(),
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.5,
+        alignment: Alignment.center,
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, size: 60, color: Colors.grey[400]),
+            const SizedBox(height: 12),
+            Text(message, textAlign: TextAlign.center, style: const TextStyle(color: Colors.black54)),
+            const SizedBox(height: 16),
+            ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.teal, foregroundColor: Colors.white),
+              onPressed: _fetchHomestays,
+              icon: const Icon(Icons.refresh),
+              label: const Text('Retry / Refresh'),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildHomestayItemCard(BuildContext context, HomestayModel homestay) {
+    return Card(
+      margin: const EdgeInsets.only(bottom: 14),
+      elevation: 2,
+      clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => HomestayDetailScreen(homestay: homestay)),
+          );
+        },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            homestay.imageUrl.isNotEmpty
+                ? Image.network(
+                    homestay.imageUrl,
+                    width: double.infinity,
+                    height: 160,
+                    fit: BoxFit.cover,
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return Container(
+                        height: 160,
+                        color: Colors.grey[200],
+                        child: const Center(child: CircularProgressIndicator(color: Colors.teal)),
+                      );
+                    },
+                    errorBuilder: (context, error, stackTrace) => _buildCardImagePlaceholder(),
+                  )
+                : _buildCardImagePlaceholder(),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          homestay.name,
+                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        'RM ${homestay.price.toStringAsFixed(2)}',
+                        style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.teal),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  Row(
+                    children: [
+                      const Icon(Icons.location_on, size: 14, color: Colors.orange),
+                      const SizedBox(width: 4),
+                      Text('${homestay.district}, ${homestay.state}', style: const TextStyle(fontSize: 13, color: Colors.black54)),
+                    ],
+                  ),
+                  const Divider(height: 16),
+                  Text(
+                    homestay.description,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontSize: 13, color: Colors.black87, height: 1.3),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCardImagePlaceholder() {
+    return Container(
+      width: double.infinity,
+      height: 160,
+      color: Colors.grey[200],
+      child: const Icon(Icons.home_work_outlined, size: 45, color: Colors.grey),
+    );
+  }
+}
