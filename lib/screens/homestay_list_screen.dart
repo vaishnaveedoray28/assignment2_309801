@@ -37,7 +37,55 @@ class _HomestayListScreenState extends State<HomestayListScreen> {
     super.dispose();
   }
 
-  Future<void> _fetchHomestays() async {}
+  Future<void> _fetchHomestays() async {
+    setState(() {
+      _isLoading = true;
+      _errorMessage = '';
+    });
+
+    String urlString = 'http://slum78.myddns.me/homestay2u/api/homestays?limit=30';
+    
+    if (_searchController.text.trim().isNotEmpty) {
+      urlString += '&search=${Uri.encodeComponent(_searchController.text.trim())}';
+    }
+    
+    if (_selectedState != 'All') {
+      urlString += '&state=${Uri.encodeComponent(_selectedState)}';
+    }
+
+    try {
+      final response = await http.get(Uri.parse(urlString)).timeout(
+        const Duration(seconds: 10),
+      );
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> responseData = json.decode(response.body);
+        
+        if (responseData['success'] == true) {
+          final List<dynamic> homestayListJson = responseData['data'] ?? [];
+          setState(() {
+            _homestays = homestayListJson.map((json) => HomestayModel.fromJson(json)).toList();
+            _isLoading = false;
+          });
+        } else {
+          setState(() {
+            _errorMessage = (responseData['message'] ?? 'Data processing issue encountered.').toString();
+            _isLoading = false;
+          });
+        }
+      } else {
+        setState(() {
+          _errorMessage = 'Server error status code: ${response.statusCode}';
+          _isLoading = false;
+        });
+      }
+    } catch (e) {
+      setState(() {
+        _errorMessage = 'Connection failure. Please verify network access.';
+        _isLoading = false;
+      });
+    }
+  }
   
   @override
   Widget build(BuildContext context) {
