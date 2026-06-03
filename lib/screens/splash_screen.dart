@@ -27,6 +27,15 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     );
 
     _animationController.forward();
+
+    Timer(const Duration(seconds: 3), () {
+      if (mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const HomestayListScreen()),
+        );
+      }
+    });
   }
 
   @override
