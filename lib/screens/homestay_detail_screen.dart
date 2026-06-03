@@ -35,6 +35,32 @@ class HomestayDetailScreen extends StatelessWidget {
                     errorBuilder: (context, error, stackTrace) => _buildImagePlaceholder(),
                   )
                 : _buildImagePlaceholder(),
+
+                Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(homestay.name, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 8),
+                  Text('RM ${homestay.price.toStringAsFixed(2)} / night', 
+                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.teal)),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      const Icon(Icons.location_on, color: Colors.orange, size: 18),
+                      const SizedBox(width: 4),
+                      Text('${homestay.district}, ${homestay.state}', style: const TextStyle(fontSize: 14, color: Colors.black54)),
+                    ],
+                  ),
+                  const Divider(height: 30),
+                  const Text('Description', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 6),
+                  Text(homestay.description, style: const TextStyle(fontSize: 14, color: Colors.black87, height: 1.4)),
+                  
+                ],
+              ),
+            ),
           
           ],
         ),
