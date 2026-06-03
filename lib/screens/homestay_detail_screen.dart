@@ -18,10 +18,36 @@ class HomestayDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Center(child: Padding(padding: EdgeInsets.all(24.0), child: CircularProgressIndicator())),
+            homestay.imageUrl.isNotEmpty
+                ? Image.network(
+                    homestay.imageUrl,
+                    width: double.infinity,
+                    height: 250,
+                    fit: BoxFit.cover,
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return Container(
+                        height: 250,
+                        color: Colors.grey[200],
+                        child: const Center(child: CircularProgressIndicator(color: Colors.teal)),
+                      );
+                    },
+                    errorBuilder: (context, error, stackTrace) => _buildImagePlaceholder(),
+                  )
+                : _buildImagePlaceholder(),
+          
           ],
         ),
       ),
     );
   }
+}
+
+Widget _buildImagePlaceholder() {
+    return Container(
+      width: double.infinity,
+      height: 250,
+      color: Colors.grey[300],
+      child: const Icon(Icons.home_work_outlined, size: 80, color: Colors.grey),
+    );
 }
