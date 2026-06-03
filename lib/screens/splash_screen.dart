@@ -46,11 +46,60 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Colors.teal,
+    return Scaffold(
+      backgroundColor: Colors.teal, 
       body: Center(
-        child: CircularProgressIndicator(color: Colors.white),
+        child: FadeTransition(
+          opacity: _fadeAnimation,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+
+              Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.15),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.home_work_rounded,
+                  size: 90,
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(height: 24),
+
+              const Text(
+                'Homestay2U',
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  letterSpacing: 1.2,
+                ),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                'Malaysia Homestay Finder',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.teal[100],
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const SizedBox(height: 48),
+
+              const SizedBox(
+                width: 28,
+                height: 28,
+                child: CircularProgressIndicator(
+                  color: Colors.white,
+                  strokeWidth: 3,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
-}
