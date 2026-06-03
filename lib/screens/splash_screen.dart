@@ -17,6 +17,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   void initState() {
     super.initState();
 
+    // Setup smooth fade-in animation for the logo/text
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1200),
@@ -28,6 +29,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
     _animationController.forward();
 
+    // Wait for 3 seconds, then navigate to the HomestayListScreen
     Timer(const Duration(seconds: 3), () {
       if (mounted) {
         Navigator.pushReplacement(
@@ -47,14 +49,14 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.teal, 
+      backgroundColor: Colors.teal, // Matches your app's main color theme
       body: Center(
         child: FadeTransition(
           opacity: _fadeAnimation,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-
+              // Beautiful Icon Branding Group
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
@@ -68,7 +70,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 ),
               ),
               const SizedBox(height: 24),
-
+              // App Name Text Styling
               const Text(
                 'Homestay2U',
                 style: TextStyle(
@@ -88,7 +90,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 ),
               ),
               const SizedBox(height: 48),
-
+              // Clean Loading indicator
               const SizedBox(
                 width: 28,
                 height: 28,
@@ -103,3 +105,4 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
       ),
     );
   }
+}
