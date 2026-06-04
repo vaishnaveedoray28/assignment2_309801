@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
       if (mounted) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const HomestayListScreen()),
+          MaterialPageRoute(builder: (context) => SplashScreen()),
         );
       }
     });
@@ -47,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.teal, 
+      backgroundColor: const Color.fromARGB(255, 184, 222, 240), 
       body: Center(
         child: FadeTransition(
           opacity: _fadeAnimation,
@@ -57,13 +57,13 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.15),
+                  color: const Color.fromARGB(255, 2, 77, 115),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
-                  Icons.home_work_rounded,
+                 Icons.travel_explore,
                   size: 90,
-                  color: Colors.white,
+                  color: Color.fromARGB(255, 252, 253, 253),
                 ),
               ),
               const SizedBox(height: 24),
@@ -72,7 +72,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: Color.fromARGB(255, 8, 76, 103),
                   letterSpacing: 1.2,
                 ),
               ),
@@ -81,7 +81,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 'Malaysia Homestay Finder',
                 style: TextStyle(
                   fontSize: 16,
-                  color: Colors.teal[100],
+                  color: const Color.fromARGB(175, 3, 86, 133),
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -90,7 +90,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 width: 28,
                 height: 28,
                 child: CircularProgressIndicator(
-                  color: Colors.white,
+                  color: Color.fromARGB(255, 0, 18, 150),
                   strokeWidth: 3,
                 ),
               ),

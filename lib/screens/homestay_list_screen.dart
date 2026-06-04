@@ -96,6 +96,7 @@ class _HomestayListScreenState extends State<HomestayListScreen> {
           'Homestay2U Malaysia',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
+        centerTitle: true,
         backgroundColor: const Color.fromARGB(255, 2, 90, 141),
         elevation: 0,
       ),

@@ -11,7 +11,7 @@ class HomestayDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(homestay.name, style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
-        backgroundColor: const Color.fromARGB(255, 38, 147, 166),
+        backgroundColor: const Color.fromARGB(255, 2, 90, 141),
         foregroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
@@ -48,9 +48,9 @@ class HomestayDetailScreen extends StatelessWidget {
                   const SizedBox(height: 8),
                   Row(
                     children: [
-                      const Icon(Icons.location_on, color: Colors.orange, size: 18),
+                      const Icon(Icons.location_on, color: Color.fromARGB(255, 225, 9, 9), size: 18),
                       const SizedBox(width: 4),
-                      Text('${homestay.district}, ${homestay.state}', style: const TextStyle(fontSize: 14, color: Colors.black54)),
+                      Text('${homestay.district}, ${homestay.state}', style: const TextStyle(fontSize: 14, color: Color.fromARGB(255, 0, 0, 0))),
                     ],
                   ),
                   const Divider(height: 30),
@@ -63,9 +63,9 @@ class HomestayDetailScreen extends StatelessWidget {
                     const Text('Activities Available', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 8),
                     Wrap(
-                      spacing: 8,
+                      spacing: 12,
                       runSpacing: 4,
-                      children: homestay.activities.map((act) => Chip(label: Text(act), backgroundColor: Colors.teal[50])).toList(),
+                      children: homestay.activities.map((act) => Chip(label: Text(act), backgroundColor: const Color.fromARGB(157, 212, 248, 255))).toList(),
                     ),
                   ],
 
@@ -76,7 +76,7 @@ class HomestayDetailScreen extends StatelessWidget {
                     Wrap(
                       spacing: 8,
                       runSpacing: 4,
-                      children: homestay.amenities.map((ame) => Chip(label: Text(ame), backgroundColor: Colors.blueGrey[50])).toList(),
+                      children: homestay.amenities.map((ame) => Chip(label: Text(ame), backgroundColor: const Color.fromARGB(101, 131, 243, 97))).toList(),
                     ),
                   ],
                 ],
