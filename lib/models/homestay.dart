@@ -22,10 +22,10 @@ class HomestayModel {
   factory HomestayModel.fromJson(Map<String, dynamic> json) {
     return HomestayModel(
       name: (json['name'] ?? '').toString(),
-      price: double.tryParse(json['price'].toString()) ?? 0.0,
+      price: double.tryParse((json['price'] ?? json['price_min'] ?? json['price_max'] ?? json['rate'] ?? 0).toString()) ?? 0.0,
       district: (json['district'] ?? '').toString(),
       state: (json['state'] ?? '').toString(),
-      imageUrl: (json['imageUrl'] ?? '').toString(),
+      imageUrl: (json['image_url'] ?? '').toString(),
       description: (json['description'] ?? '').toString(),
       activities: json['activities'] != null
           ? List<String>.from(json['activities'].map((item) => item.toString()))

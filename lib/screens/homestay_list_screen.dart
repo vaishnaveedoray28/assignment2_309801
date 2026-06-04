@@ -90,13 +90,13 @@ class _HomestayListScreenState extends State<HomestayListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[100],
+      backgroundColor: const Color.fromARGB(255, 209, 223, 227),
       appBar: AppBar(
         title: const Text(
           'Homestay2U Malaysia',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
-        backgroundColor: const Color.fromARGB(255, 150, 30, 0),
+        backgroundColor: const Color.fromARGB(255, 2, 90, 141),
         elevation: 0,
       ),
       body: Column(
@@ -307,16 +307,16 @@ class _HomestayListScreenState extends State<HomestayListScreen> {
                       const SizedBox(width: 8),
                       Text(
                         'RM ${homestay.price.toStringAsFixed(2)}',
-                        style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.teal),
+                        style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 0, 31, 115)),
                       ),
                     ],
                   ),
                   const SizedBox(height: 4),
                   Row(
                     children: [
-                      const Icon(Icons.location_on, size: 14, color: Colors.orange),
+                      const Icon(Icons.location_on_rounded, size: 14, color: Color.fromARGB(255, 243, 62, 2)),
                       const SizedBox(width: 4),
-                      Text('${homestay.district}, ${homestay.state}', style: const TextStyle(fontSize: 13, color: Colors.black54)),
+                      Text('${homestay.district}, ${homestay.state}', style: const TextStyle(fontSize: 13, color: Color.fromARGB(255, 150, 13, 13))),
                     ],
                   ),
                   const Divider(height: 16),
