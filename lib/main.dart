@@ -17,7 +17,7 @@ class HomestayApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 78, 99, 103)),
         useMaterial3: true,
       ),
-      //home: const (),
+      home: const SplashScreen(), // FIXED: Resolved broken constructor parameters to launch the Splash interface smoothly
     );
   }
 }

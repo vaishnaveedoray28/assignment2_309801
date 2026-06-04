@@ -18,7 +18,6 @@ class HomestayDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            
             homestay.imageUrl.isNotEmpty
                 ? Image.network(
                     homestay.imageUrl,
